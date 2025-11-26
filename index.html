@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Bulgarian Map</title>
-  <link rel="stylesheet" href="leaflet/dist/leaflet.css">
+
   <style>
     html, body {
       height: 100%;
@@ -11,81 +11,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #ffff;
+      background: #f9f9f9;
       font-family: "Segoe UI", sans-serif; 
     }
 
-    .container {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
     #map {
+      position: relative;
       width: 700px;
       height: 450px;
       border: 2px solid #ccc;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background-image: url('bulgaria-map.png');
+      background-size: cover;
+      background-position: center;
     }
 
-    #city-name {
-      font-size: 30px;
-      font-weight: bold;
-      color: #555; 
-      width: 200px;
-      min-width: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-family: "Segoe UI", sans-serif; 
-      flex-shrink: 0;
-    }
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="map"></div>
-    <div id="city-name"></div>
-  </div>
-
-  <script src="leaflet/dist/leaflet.js"></script>
-  <script>
-    window.onload = function() {
-      const bulgariaBounds = [[41.2, 22.4], [44.3, 28.6]];
-      const map = L.map('map', {
-        maxBounds: bulgariaBounds,
-        maxBoundsViscosity: 1.0,
-        minZoom: 7,
-        maxZoom: 14,
-        dragging: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        boxZoom: false,
-        keyboard: false,
-        tap: false
-      }).fitBounds(bulgariaBounds);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
-      const cities = [
-        { name: "Sofia", coords: [42.6977, 23.3219] },
-        { name: "Plovdiv", coords: [42.1354, 24.7453] },
-        { name: "Varna", coords: [43.2141, 27.9147] },
-        { name: "Burgas", coords: [42.5048, 27.4626] },
-        { name: "Ruse", coords: [43.8356, 25.9653] }
-      ];
-
-      const cityNameDiv = document.getElementById('city-name');
-      cities.forEach(city => {
-        const marker = L.marker(city.coords).addTo(map)
-          .bindPopup(`<b>${city.name}</b>`, { autoPan: false });
-
-        marker.on('click', () => {
-          cityNameDiv.textContent = city.name;
-        });
-      });
-    };
-  </script>
+<div id="map"></div>
 </body>
 </html>
