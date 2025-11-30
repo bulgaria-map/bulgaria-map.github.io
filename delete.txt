@@ -1,0 +1,5 @@
+git clone https://github.com/<your-username>/bulgaria-map.github.io.git
+cd bulgaria-map.github.io
+git rm -r *
+git commit -m "Remove all old files"
+git push
